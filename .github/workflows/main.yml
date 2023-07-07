@@ -1,0 +1,19 @@
+name: Run Cypress Tests using on Single Machine
+on: push
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    container: cypress/browsers:node16.18.0-chrome90-ff88
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        with:
+          record: true
+          browser: firefox
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # Recommended: pass the GitHub token lets this action correctly determine the unique run id necessary to re-run the checks (generates dynamically)
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
