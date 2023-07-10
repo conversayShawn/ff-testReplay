@@ -1,4 +1,4 @@
-name: Run Cypress Tests using Multiple Machines
+name: Run Cypress Tests using on Single Machine
 
 on: push
 
@@ -7,31 +7,25 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  install:
+  cypress:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Cypress install
-        uses: cypress-io/github-action@v5
-        with:
-          runTests: false
+    strategy:
+      matrix:
+        browser: [firefox, webkit]
 
-  firefox:
-    runs-on: ubuntu-latest
-    needs: install
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set up Firefox
+      - name: Set up ${{ matrix.browser }}
         uses: browser-actions/setup-firefox@v1
+        if: matrix.browser == 'firefox'
         with:
           firefox-version: '92.0.1'
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          command: npm run ff
-          tag: firefox
-          record: ${{ job.status == 'success' && matrix.container == '1' }}
+          browser: ${{ matrix.browser }}
+          command: npm run ${{ matrix.browser }}
+          tag: ${{ matrix.browser }}
