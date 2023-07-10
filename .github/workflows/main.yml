@@ -13,8 +13,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install Playwright dependencies for WebKit
-        run: npm i playwright install-deps webkit
+      - name: Install Playwright dependencies
+        run: npx playwright install-deps
 
       - name: Cypress install
         uses: cypress-io/github-action@v5
@@ -72,6 +72,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Install Playwright dependencies for WebKit
+        run: npx playwright install-deps webkit
 
       - name: "Testing in WebKit"
         uses: cypress-io/github-action@v5
