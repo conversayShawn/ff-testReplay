@@ -1,4 +1,4 @@
-name: Run Cypress Tests using on Single Machine
+name: Cypress Tests
 
 on: push
 
@@ -7,62 +7,74 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  test:
-    name: Cypress run
+  install:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        container: [1, 2, 3]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
-      - name: Cypress run
+      - name: Cypress install
         uses: cypress-io/github-action@v5
         with:
-          browser: ${{ matrix.browser }}
-          command: npm run ${{ matrix.browser }}
+          runTests: false
 
-  firefox:
-    needs: test
+  chrome-browser:
+    timeout-minutes: 15
     runs-on: ubuntu-latest
+    needs: install
     strategy:
+      # run 3 copies of the current job in parallel
       matrix:
-        browser: [firefox]
-
+        containers: [1, 2, 3]
     steps:
-      - name: Cypress run - Firefox
-        uses: cypress-io/github-action@v5
-        with:
-          browser: firefox
-          command: npm run firefox
+      - name: Checkout
+        uses: actions/checkout@v3
 
-  chrome:
-    needs: test
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        browser: [chrome]
-
-    steps:
-      - name: Cypress run - Chrome
+      - name: "Testing in Chrome"
         uses: cypress-io/github-action@v5
         with:
           browser: chrome
-          command: npm run chrome
+          record: true
+          parallel: true
+          group: "Chrome"
 
-  webkit:
-    needs: test
+  firefox-browser:
+    timeout-minutes: 15
     runs-on: ubuntu-latest
+    needs: install
     strategy:
+      # run 3 copies of the current job in parallel
       matrix:
-        browser: [webkit]
-
+        containers: [1, 2, 3]
     steps:
-      - name: Cypress run - WebKit
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: "Testing in Firefox"
+        uses: cypress-io/github-action@v5
+        with:
+          browser: firefox
+          record: true
+          parallel: true
+          group: "Firefox"
+
+  webkit-browser:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    needs: install
+    strategy:
+      # run 3 copies of the current job in parallel
+      matrix:
+        containers: [1, 2, 3]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: "Testing in Webkit"
         uses: cypress-io/github-action@v5
         with:
           browser: webkit
-          command: npm run webkit
+          record: true
+          parallel: true
+          group: "Webkit"
+          config: "video=true,experimentalWebKitSupport=true"
