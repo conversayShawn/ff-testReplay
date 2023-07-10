@@ -3,6 +3,10 @@ const fs = require('fs')
 
 module.exports = defineConfig({
   projectId:"yrin2w",
+  retries: {
+    openMode: 0,
+    runMode: 2
+  },
   e2e: {
     setupNodeEvents(on, config) {
       on("after:spec", (spec, results) => {
