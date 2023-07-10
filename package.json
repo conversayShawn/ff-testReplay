@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "ff": "npx cypress run --record --key --config video=true --browser firefox",
+    "chrome": "npx cypress run --record --key --config --browser chrome",
     "webkit": "npx cypress run --record --key --config video=true experimentalWebKitSupport=true --browser webkit"
   },
   "author": "",
