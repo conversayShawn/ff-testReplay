@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "firefox": "npx cypress run --record --key --config video=true --browser firefox",
-    "chrome": "npx cypress run --record --key --config --browser chrome",
-    "webkit": "npx cypress run --record --key --config video=true --browser webkit"
+    "firefox": "npx cypress run --record --key --config video=true --browser firefox --parallel",
+    "chrome": "npx cypress run --record --key --config --browser chrome --parallel",
+    "webkit": "npx cypress run --record --key --config video=true --browser webkit --parallel"
   },
   "author": "",
   "license": "ISC",
