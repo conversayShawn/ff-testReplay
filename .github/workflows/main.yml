@@ -10,7 +10,7 @@ jobs:
       - name: Set up Firefox
         uses: browser-actions/setup-firefox@v1
         with:
-          firefox-version: '92'
+          firefox-version: '92.0.1'
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
