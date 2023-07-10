@@ -9,53 +9,58 @@ env:
 jobs:
   test:
     name: Cypress run
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
       matrix:
-        containers: [1, 2, 3]
+        container: [1, 2, 3]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        with:
+          browser: ${{ matrix.browser }}
+          command: npm run ${{ matrix.browser }}
+
   firefox:
+    needs: test
     runs-on: ubuntu-latest
-    # needs: install
-    # strategy:
-    #   fail-fast: false
-    #   matrix:
-    #     containers: [1, 2, 3]        
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    strategy:
+      matrix:
+        browser: [firefox]
 
+    steps:
       - name: Cypress run - Firefox
         uses: cypress-io/github-action@v5
         with:
+          browser: firefox
           command: npm run firefox
+
   chrome:
+    needs: test
     runs-on: ubuntu-latest
-    # needs: install
-    # strategy:
-    #   fail-fast: false
-    #   matrix:
-    #     containers: [1, 2, 3]        
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    strategy:
+      matrix:
+        browser: [chrome]
 
-      - name: Cypress run - Firefox
+    steps:
+      - name: Cypress run - Chrome
         uses: cypress-io/github-action@v5
         with:
+          browser: chrome
           command: npm run chrome
-  webkit:
-    runs-on: ubuntu-latest
-    # needs: install
-    # strategy:
-    #   fail-fast: false
-    #   matrix:
-    #     containers: [1, 2, 3]        
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
 
-      - name: Cypress run - Firefox
+  webkit:
+    needs: test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser: [webkit]
+
+    steps:
+      - name: Cypress run - WebKit
         uses: cypress-io/github-action@v5
         with:
+          browser: webkit
           command: npm run webkit
