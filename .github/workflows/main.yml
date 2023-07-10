@@ -78,4 +78,4 @@ jobs:
           record: true
           parallel: true
           group: "Webkit"
-          config: "video=true,experimentalWebKitSupport=true"
+          config: "video=true"

@@ -2,6 +2,7 @@ const { defineConfig } = require("cypress");
 const fs = require('fs')
 
 module.exports = defineConfig({
+  experimentalWebKitSupport: true,
   projectId:"yrin2w",
   retries: {
     openMode: 0,
