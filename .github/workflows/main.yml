@@ -16,7 +16,7 @@ jobs:
       - name: Cypress install
         uses: cypress-io/github-action@v5
         with:
-          build: npx playwright install-deps webkit
+          # build: npx playwright install-deps webkit
           runTests: false
 
   chrome-browser:
@@ -71,11 +71,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: "Testing in Webkit"
+      - name: "Testing in WebKit"
         uses: cypress-io/github-action@v5
         with:
           browser: webkit
           record: true
           parallel: true
-          group: "Webkit"
-          config: "video=true"
+          group: "WebKit"
+          config: "video=true,experimentalWebKitSupport=true"
