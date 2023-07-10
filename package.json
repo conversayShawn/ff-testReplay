@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "ff": "npx cypress run --record --key --config video=true --browser firefox"
+    "ff": "npx cypress run --record --key --config video=true --browser firefox",
+    "webkit": "npx cypress run --record --key --config video=true experimentalWebKitSupport=true --browser webkit"
   },
   "author": "",
   "license": "ISC",

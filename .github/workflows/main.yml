@@ -1,7 +1,13 @@
 name: Run Cypress Tests using on Single Machine
+
 on: push
+
+env:
+  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
-  cypress-run:
+  firefox:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -15,8 +21,20 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          browser: firefox
+          # browser: firefox
           command: npm run ff
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: firefox
+
+  webkit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        with:
+          # browser: webkit
+          command: npm run webkit
+          tag: webkit
+
