@@ -13,10 +13,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Install Playwright dependencies for WebKit
+        run: npm i playwright install-deps webkit
+
       - name: Cypress install
         uses: cypress-io/github-action@v5
         with:
-          # build: npx playwright install-deps webkit
           runTests: false
 
   chrome-browser:
