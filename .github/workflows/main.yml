@@ -17,12 +17,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set up ${{ matrix.browser }}
-        uses: browser-actions/setup-firefox@v1
-        if: matrix.browser == 'firefox'
-        with:
-          firefox-version: '92.0.1'
-
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
