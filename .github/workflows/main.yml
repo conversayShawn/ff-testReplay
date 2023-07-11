@@ -5,6 +5,7 @@ on: push
 env:
   CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  DEBUG: "cypress:*"
 
 jobs:
   install:
@@ -35,6 +36,7 @@ jobs:
       - name: "Testing in Electron"
         uses: cypress-io/github-action@v5
         with:
+          build: npx cypress info
           record: true
           parallel: true
           group: "Electron"
@@ -53,6 +55,7 @@ jobs:
       - name: "Testing in Chrome"
         uses: cypress-io/github-action@v5
         with:
+          build: npx cypress info
           browser: chrome
           record: true
           parallel: true
@@ -72,6 +75,7 @@ jobs:
       - name: "Testing in Firefox"
         uses: cypress-io/github-action@v5
         with:
+          build: npx cypress info
           browser: firefox
           record: true
           parallel: true
@@ -91,6 +95,7 @@ jobs:
       - name: "Testing in Edge"
         uses: cypress-io/github-action@v5
         with:
+          build: npx cypress info
           browser: edge
           record: true
           parallel: true
@@ -114,6 +119,7 @@ jobs:
       - name: "Testing in WebKit"
         uses: cypress-io/github-action@v5
         with:
+          build: npx cypress info
           browser: webkit
           record: true
           parallel: true

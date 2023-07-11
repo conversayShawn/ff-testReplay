@@ -20,6 +20,15 @@ describe("example to-do app", () => {
     cy.visit("https://example.cypress.io/todo");
   });
 
+  // This will create a flaky test to test retry logic in Test Replay
+  it("Flaky test - display 2 two items by default", () => {
+    const randomNumber = Math.random();
+  
+    randomNumber > 0.5
+      ? cy.get(".todo-list li").should("have.length", 2) // Pass the test
+      : (console.log("This is a flaky failure"), cy.get(".todo-list li").should("have.length", 2)); // Fail the test
+  });
+  
   it("displays two todo items by default", () => {
     // We use the `cy.get()` command to get all elements that match the selector.
     // Then, we use `should` to assert that there are two matched items,
@@ -78,15 +87,7 @@ describe("example to-do app", () => {
       .parents("li")
       .should("have.class", "completed");
   });
-  describe("Flaky Test", () => {
-    it("Should pass or fail randomly", () => {
-      const randomNumber = Math.random();
-
-      randomNumber > 0.5
-        ? expect(randomNumber).to.be.greaterThan(0.5) // Pass the test
-        : expect(randomNumber).to.be.lessThan(0.5); // Fail the test
-    });
-  });
+    
   context("with a checked task", () => {
     beforeEach(() => {
       // We'll take the command we used above to check off an element
