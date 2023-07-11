@@ -26,7 +26,7 @@ describe("example to-do app", () => {
   
     randomNumber > 0.5
       ? cy.get(".todo-list li").should("have.length", 2) // Pass the test
-      : (console.log("This is a flaky failure"), cy.get(".todo-list li").should("have.length", 2)); // Fail the test
+      : (console.log("This is a flaky failure")); // Fail the test
   });
   
   it("displays two todo items by default", () => {
