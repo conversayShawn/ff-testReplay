@@ -2,6 +2,7 @@ const { defineConfig } = require("cypress");
 const fs = require("fs");
 
 module.exports = defineConfig({
+  video: false,
   projectId: "yrin2w",
   retries: {
     openMode: 0,
