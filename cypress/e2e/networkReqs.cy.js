@@ -19,6 +19,7 @@ describe("Status code test", () => {
       failOnStatusCode: false,
     }).then((response) => {
       expect(response.status).to.not.equal(200);
+      console.log(response.status)
     });
   });
 
@@ -29,6 +30,7 @@ describe("Status code test", () => {
       failOnStatusCode: false,
     }).then((response) => {
       expect(response.status).to.equal(200);
+      console.log(response.status)
     });
   });
 
@@ -39,6 +41,7 @@ describe("Status code test", () => {
       failOnStatusCode: false,
     }).then((response) => {
       expect(response.status).to.equal(200);
+      console.log(response.status)
     });
   });
 
@@ -49,6 +52,7 @@ describe("Status code test", () => {
       failOnStatusCode: false,
     }).then((response) => {
       expect(response.status).to.equal(200);
+      console.log(response.status)
     });
   });
 
@@ -59,6 +63,7 @@ describe("Status code test", () => {
       failOnStatusCode: false,
     }).then((response) => {
       expect(response.status).to.equal(200);
+      console.log(response.status)
     });
   });
 });

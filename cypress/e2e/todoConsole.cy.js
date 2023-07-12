@@ -58,7 +58,7 @@ describe("example to-do app", () => {
 
       // Print the alias to the console
       cy.get("@uncompletedTask").then(($el) => {
-        console.log("Alias: uncompletedTask", $el.text());
+        console.log("Alias: uncompletedTask: ", $el.text());
       });
     });
 
