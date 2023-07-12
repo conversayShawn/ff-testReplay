@@ -21,7 +21,7 @@ describe("example to-do app", () => {
       .should("have.length", 3)
       .last()
       .should("have.text", newItem);
-    console.log(newItem);
+    console.log("New item text: ", newItem);
   });
 
   it("can check off an item as completed", () => {

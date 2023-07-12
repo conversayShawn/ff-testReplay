@@ -11,7 +11,7 @@ describe("Status code test", () => {
     });
   });
 
-    // This test should fail if a 200 response status is returned
+  // This test should fail if a 200 response status is returned
   it("Failure: should fail if 200 status code", () => {
     cy.request({
       method: "GET",
@@ -19,7 +19,7 @@ describe("Status code test", () => {
       failOnStatusCode: false,
     }).then((response) => {
       expect(response.status).to.not.equal(200);
-      console.log(response.status)
+      console.log("Response status: ", response.status);
     });
   });
 
@@ -30,7 +30,7 @@ describe("Status code test", () => {
       failOnStatusCode: false,
     }).then((response) => {
       expect(response.status).to.equal(200);
-      console.log(response.status)
+      console.log("Response status: ", response.status);
     });
   });
 
@@ -41,7 +41,7 @@ describe("Status code test", () => {
       failOnStatusCode: false,
     }).then((response) => {
       expect(response.status).to.equal(200);
-      console.log(response.status)
+      console.log("Response status: ", response.status);
     });
   });
 
@@ -52,7 +52,7 @@ describe("Status code test", () => {
       failOnStatusCode: false,
     }).then((response) => {
       expect(response.status).to.equal(200);
-      console.log(response.status)
+      console.log("Response status: ", response.status);
     });
   });
 
@@ -63,7 +63,7 @@ describe("Status code test", () => {
       failOnStatusCode: false,
     }).then((response) => {
       expect(response.status).to.equal(200);
-      console.log(response.status)
+      console.log("Response status: ", response.status);
     });
   });
 });
