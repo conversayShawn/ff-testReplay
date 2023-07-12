@@ -14,6 +14,6 @@
     "playwright-webkit": "^1.35.1"
   },
   "dependencies": {
-    "cypress": "^12.17.1"
+    "cypress": "https://cdn.cypress.io/beta/npm/13.0.0/darwin-arm64/release/13.0.0-d2058a3e002e9f565ba67b5effc20b64defe0157/cypress.tgz"
   }
 }
